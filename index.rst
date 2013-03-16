@@ -3,13 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to wiki's documentation!
+Welcome to lidashuang's wiki documentation!
 ================================
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
+
+   git
+   language
+   web
 
 
 
