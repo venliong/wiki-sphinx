@@ -74,3 +74,12 @@ new 函数接受参数为某一类型, 分配内存, 返回指向它的指针
 
 接口
 ^^^^^^^^^^^^^^^^^^^
+
+简单的说，interface是一组method的组合，我们通过interface来定义对象的一组行为。
+在golang中,一个类只需要实现了这个类所要求的所有函数,我们就说这个类实现了这个接口. 
+
+
+接口例子:
+
+.. literalinclude:: code/interfaces.go
+	:language: go

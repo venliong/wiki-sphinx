@@ -7,6 +7,8 @@ import "fmt"
 import "math"
 
 // Here's a basic interface for geometric shapes.
+// geometry 接口类型
+// 方法的集合
 type geometry interface {
     area() float64
     perim() float64
@@ -43,6 +45,8 @@ func (c circle) perim() float64 {
 // methods that are in the named interface. Here's a
 // generic `measure` function taking advantage of this
 // to work on any `geometry`.
+// 如果一个变量符合一个接口类型, 我们就可以call interface 里面定义的方法 
+// 
 func measure(g geometry) {
     fmt.Println(g)
     fmt.Println(g.area())
