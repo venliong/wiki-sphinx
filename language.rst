@@ -13,11 +13,11 @@ Golang 语言学习笔记,参考
 * `learn go by example <https://gobyexample.com/>`_
 
 
-
 指针
 ^^^^^^^^^^^^^^^^^^
 
-对于下面的代码, 在main调用zero() 函数, main函数里的x输出是5,如果我们想要改变main函数里的x值,需要用到指针
+对于下面的代码, 在main调用zero() 函数, main函数里的x输出是5,如果我们想要改变main函数里的x值,
+需要用到指针
 
 .. code-block:: go
 
@@ -83,3 +83,47 @@ new 函数接受参数为某一类型, 分配内存, 返回指向它的指针
 
 .. literalinclude:: code/interfaces.go
 	:language: go
+
+Go 语言编程笔记 
+^^^^^^^^^^^^^^^^^^
+
+P79::
+
+	go语言和c语言一样,类型都是基于值传递的,要想修改变量的值,要传递指针 
+
+goroutine::
+
+	go go语言中最重要的关键字,只要在函数前加上go关键字,这次调用会在一个新的goroutine中并发执行. 当被
+	调用的函数返回时, 这个 goroutine 也结束了 ** 如果这个函数有返回值,那么这个返回值会被丢弃**
+
+
+并发 通信::
+
+		goroutine是Go语言中的轻量级线程实现，由Go运行时（runtime）管理
+
+		并发单元间的通信是最大问题
+
+		工程上最常用的两种并发通信模型, 共享数据和消息
+
+		go 语言使用**消息机制**
+
+		消息机制认为每个并发单元是自包含的、独立的个体，并且都有自己的变量，但在不同并发单元间这些变量不共享。每个并发单元的输入和输出只有一种，那就是消息。
+
+		“不要通过共享内存来通信，而应该通过通信来共享内存。”
+
+
+channel::
+	
+	channel是Go语言在语言级别提供的goroutine间的通信方式。我们可以使用channel在两个或多个goroutine之间传递消息。	
+
+	channel是类型相关的。也就是说，一个channel只能传递一种类型的值
+
+	一般channel的声明形式为： var chanName chan ElementType
+
+	我们声明一个map，元素是bool型的channel: var m map[string] chan bool
+
+channel example 
+
+.. literalinclude:: code/channel.go
+	:language: go
+
