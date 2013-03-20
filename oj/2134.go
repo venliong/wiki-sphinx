@@ -55,28 +55,37 @@ func main() {
 
 	flag := false 
 
-	fmt.Scanf("%s", &str)
 
-	for _, ch := range str {
+	for {
 
-		if  ch == '(' || ch == '[' || ch == '{' {
-			stack.push(selem(ch))
-			flag = true 
+		_, err := fmt.Scanf("%s", &str)
+
+		if err != nil{
+			return
 		}
 
-		if !stack.isEmpty() {
+		for _, ch := range str {
 
-			if (ch == ')' && stack.data[stack.top] == '(') || ( ch == '}' && stack.data[stack.top] == '{') || (ch == ']' && stack.data[stack.top] == '[') {
-				stack.pop()
+			if  ch == '(' || ch == '[' || ch == '{' {
+				stack.push(selem(ch))
+				flag = true 
 			}
 
+			if !stack.isEmpty() {
+
+				if (ch == ')' && stack.data[stack.top] == '(') || ( ch == '}' && stack.data[stack.top] == '{') || (ch == ']' && stack.data[stack.top] == '[') {
+					stack.pop()
+				}
+
+			}
 		}
-	}
 
 
-	if flag && stack.isEmpty() {
-		fmt.Println("yes")
-	} else {
-		fmt.Println("no")
+		if flag && stack.isEmpty() {
+			fmt.Println("yes")
+		} else {
+			fmt.Println("no")
+		}
+
 	}
 }
