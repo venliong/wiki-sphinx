@@ -7,6 +7,7 @@ Golang 语言学习笔记,参考
 
 * `golang book <http://www.golang-book.com>`_
 * `learn go by example <https://gobyexample.com/>`_
+* `go 网络编程 <http://jan.newmarch.name/go/zh/>`_
 
 
 指针
@@ -79,6 +80,33 @@ new 函数接受参数为某一类型, 分配内存, 返回指向它的指针
 
 .. literalinclude:: /code/interfaces.go
 	:language: go
+
+
+网络编程 
+^^^^^^^^^^^^^^^^^^^^^^^
+
+一个简单的例子，展示个客户端连接到一个网页(HTTP)服务器。 
+
+.. literalinclude:: /code/go-net/tcpaddr.go
+	:language: go
+
+
+一个时间服务器的例子
+
+有关调用::
+
+	func ListenTCP(net string, laddr *TCPAddr) (l *TCPListener, err os.Error)
+	func (l *TCPListener) Accept() (c Conn, err os.Error)
+
+net参数可以设置为字符串"tcp", "tcp4"或者"tcp6"中的一个。如果你想监听所有网络接口，IP地址应设置为0，或如果你只是想监听一个简单网络接口，IP地址可以设置为该网络的地址。如果端口设置为0，O/S会为你选择一个端口。否则，你可以选择你自己的。需要注意的是，在Unix系统上，除非你是监控系统，否则不能监听低于1024的端口，小于128的端口是由IETF标准化。该示例程序选择端口1200没有特别的原因。TCP地址如下":1200" - 所有网络接口, 端口1200。
+
+
+
+
+.. literalinclude:: code/go-net/time_server.go
+	:language: go
+
+
 
 
 goroutine channel select 
