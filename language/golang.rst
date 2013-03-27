@@ -101,43 +101,14 @@ new 函数接受参数为某一类型, 分配内存, 返回指向它的指针
 net参数可以设置为字符串"tcp", "tcp4"或者"tcp6"中的一个。如果你想监听所有网络接口，IP地址应设置为0，或如果你只是想监听一个简单网络接口，IP地址可以设置为该网络的地址。如果端口设置为0，O/S会为你选择一个端口。否则，你可以选择你自己的。需要注意的是，在Unix系统上，除非你是监控系统，否则不能监听低于1024的端口，小于128的端口是由IETF标准化。该示例程序选择端口1200没有特别的原因。TCP地址如下":1200" - 所有网络接口, 端口1200。
 
 
-
-
-.. literalinclude:: code/go-net/time_server.go
+.. literalinclude:: /code/go-net/time_server.go
 	:language: go
 
 
 
 
-goroutine channel select 
+并发 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-channel: 
-
-.. literalinclude:: /code/channel.go
-	:language: go
-
-channel: 
-
-
-一个 goroutine 向 channel 里输入奇数, 一个输入偶数, 
-
-.. literalinclude:: /code/channel_1.go
-	:language: go
-
-
-Go 语言编程笔记 
-^^^^^^^^^^^^^^^^^^
-
-P79::
-
-	go语言和c语言一样,类型都是基于值传递的,要想修改变量的值,要传递指针 
-
-goroutine::
-
-	go go语言中最重要的关键字,只要在函数前加上go关键字,这次调用会在一个新的goroutine中并发执行. 当被
-	调用的函数返回时, 这个 goroutine 也结束了 ** 如果这个函数有返回值,那么这个返回值会被丢弃**
-
 
 并发 通信::
 
@@ -153,15 +124,77 @@ goroutine::
 
 		“不要通过共享内存来通信，而应该通过通信来共享内存。”
 
+goroutine 
+""""""""""""
 
-channel::
+:: 
+
+	goroutine是Go语言中的轻量级线程实现，由Go运行时（runtime）管理。
+
+	在一个函数调用前加上go关键字，这次调用就会在一个新的goroutine中并发执行。
+	当被调用的函数返回时，这个goroutine也自动结束了。需要注意的是，如果这个函数有返回值，
+	那么这个返回值会被丢弃。
+
+	go go语言中最重要的关键字,只要在函数前加上go关键字,这次调用会在一个新的goroutine中并发执行. 当被
+	调用的函数返回时, 这个 goroutine 也结束了 ** 如果这个函数有返回值,那么这个返回值会被丢弃**
+
+channel 
+""""""""""""""
+
+::
+		
+		channel是Go语言在语言级别提供的goroutine间的通信方式。我们可以使用channel在两个或多个goroutine之间传递消息
+
+:: 
+
+	channel是类型相关的。也就是说，一个channel只能传递一种类型的值，这个类型需要在声明channel时指定。	
+
+一般channel的声明形式为::
+
+	var chanName chan ElementType	
+
+
+
+channel: 
+
+.. literalinclude:: /code/channel.go
+	:language: go
+
+channel: 
+
+
+一个 goroutine 向 channel 里输入奇数, 一个输入偶数, 
+
+.. literalinclude:: /code/channel_1.go
+	:language: go
+
+
+单向 channel 
+""""""""""""""""""
+
+:: 
 	
-	channel是Go语言在语言级别提供的goroutine间的通信方式。我们可以使用channel在两个或多个goroutine之间传递消息。	
+		顾名思义，单向channel只能用于发送或者接收数据。
 
-	channel是类型相关的。也就是说，一个channel只能传递一种类型的值
+单向channel变量的声明非常简单，如下::
 
-	一般channel的声明形式为： var chanName chan ElementType
+	var ch1 chan int        // ch1是一个正常的channel，不是单向的
+	var ch2 chan<- float64// ch2是单向channel，只用于写float64数据
+	var ch3 <-chan int  // ch3是单向channel，只用于读取int数据
 
-	我们声明一个map，元素是bool型的channel: var m map[string] chan bool
+单向channel如何初始化::
+
+	ch4 := make(chan int)
+	ch5 := <-chan int(ch4) // ch5就是一个单向的读取channel
+	ch6 := chan<- int(ch4) // ch6 是一个单向的写入channel
+
+基于ch4，我们通过类型转换初始化了两个单向channel：单向读的ch5和单向写的ch6。
 
 
+example::
+
+	func Parse(ch <-chan int) {
+		for value := range ch {
+			fmt.Println("Parsing value", value) 
+		}
+	}
