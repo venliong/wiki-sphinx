@@ -7,4 +7,5 @@ Programming language
 
 	language/golang
 	language/lua
+	language/ruby
 

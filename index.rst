@@ -1,10 +1,9 @@
-.. wiki documentation master file, created by
-   sphinx-quickstart on Sat Mar 16 08:38:53 2013.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+:orphan:
 
-Welcome to lidashuang's wiki documentation!
-================================
+Welcome to lidashuang's wiki  
+============================
+
+这是lidashuang的个人wiki, 主要记录学习中一些东西
 
 Contents:
 
@@ -17,10 +16,10 @@ Contents:
 
 
 
-Indices and tables
-==================
+.. Indices and tables
+.. ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`
 
