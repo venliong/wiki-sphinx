@@ -1,10 +1,10 @@
-package main 
+package main
 
-import 	(
-	"net"
-	"os"
+import (
 	"fmt"
 	"io/ioutil"
+	"net"
+	"os"
 )
 
 func main() {
@@ -18,9 +18,9 @@ func main() {
 	// 函数ResolveTCPAddr用来创建一个TCPAddr
 
 	// type TCPAddr struct {
-    //		 IP   IP
-    // 		 Port int
-    // }
+	//		 IP   IP
+	// 		 Port int
+	// }
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", service)
 	checkError(err)
 

@@ -1,11 +1,11 @@
-package main 
+package main
 
 import (
 	"fmt"
-	"time"
 	"net"
 	"os"
-)	
+	"time"
+)
 
 func main() {
 	// 要监听的地址,
@@ -22,7 +22,7 @@ func main() {
 		// 有连接来
 		conn, err := listener.Accept()
 		if err != nil {
-			continue 
+			continue
 		}
 		fmt.Println(conn.RemoteAddr())
 
@@ -32,12 +32,11 @@ func main() {
 		conn.Close()
 	}
 
-
 }
 
 func checkError(err error) {
-        if err != nil {
-                fmt.Fprintf(os.Stderr, "Fatal error: %s", err.Error())
-                os.Exit(1)
-        }
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Fatal error: %s", err.Error())
+		os.Exit(1)
+	}
 }
