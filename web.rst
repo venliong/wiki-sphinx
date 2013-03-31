@@ -10,3 +10,4 @@ web develop
 .. toctree::
 
 	web/beego
+	web/revel
