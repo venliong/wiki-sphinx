@@ -9,6 +9,11 @@ Golang 语言学习笔记,参考
 * `learn go by example <https://gobyexample.com/>`_
 * `go 网络编程 <http://jan.newmarch.name/go/zh/>`_
 
+资料: 
+
+* `go 语言并发之美 <http://pan.baidu.com/share/link?shareid=377855&uk=621730158>`_
+
+
 
 指针
 ^^^^^^^^^^^^^^^^^^
