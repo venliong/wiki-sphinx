@@ -6,3 +6,4 @@ Tool
 .. toctree::
 
 	tool/git
+	tool/vim
