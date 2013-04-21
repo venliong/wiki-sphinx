@@ -11,3 +11,4 @@ web develop
 
 	web/beego
 	web/revel
+	web/db
