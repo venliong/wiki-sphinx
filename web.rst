@@ -9,5 +9,5 @@ web develop
 
 .. toctree::
 
-    web/beego
-    web/aj
+	web/beeg
+	web/revel
