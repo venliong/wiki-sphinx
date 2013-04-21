@@ -3,6 +3,8 @@ beego framework
 
 使用beego 框架的一些笔记 
 
+* beego入门教程之一——beego介绍 http://bbs.mygolang.com/thread-385-1-1.html
+
 notices 
 ^^^^^^^^^^^^^^^
 
